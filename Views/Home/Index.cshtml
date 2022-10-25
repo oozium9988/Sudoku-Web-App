@@ -1,0 +1,240 @@
+﻿@model SudokuSolverWebApp.ViewModels.IndexViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="buttons-center mt-5 mb-5">
+    @using (Html.BeginForm("ResetSudoku", "Home", FormMethod.Post))
+    {
+        <input type="submit" Value="Reset Sudoku" class="btn btn-primary" />
+    }
+    @using (Html.BeginForm("GenerateRandomSudoku", "Home", FormMethod.Post))
+    {
+        <input type="submit" Value="Generate Random Sudoku" class="btn btn-primary" />
+    }    
+</div>
+
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    if (!string.IsNullOrWhiteSpace(Model.ValidationMessage))
+    {
+        <div class="alert alert-danger">
+            @Model.ValidationMessage
+        </div>
+    }
+
+    <div class="sudoku">
+        @for (int j = 0; j < 9; j++)
+        {
+            bool hasBorder = j % 3 == 2 && j < 8;
+            string cssClass = hasBorder ? "sudoku-row sudoku-row-border-bottom" : "sudoku-row";
+
+            if (j == 8)
+                cssClass += " sudoku-row-bottom";
+
+            <div class="@cssClass">
+                @for (int i = 0; i < 9; i++)
+                {
+                    hasBorder = i % 3 == 2 && i < 8;
+                    cssClass = hasBorder ? "sudoku-cell sudoku-cell-border-right" : "sudoku-cell";
+
+                    <div class="@cssClass">
+                        @Html.TextBoxFor(
+                            m => m.Sudoku[i][j],
+                            new
+                                 {
+                                @id = "textbox_SudokuCell_" + i + j,
+                                @class = "sudoku-cell-text",
+                                maxLength = "1",
+                                oninput = "this.value=this.value.replace(/[^0-9]/g,'')"
+                            })
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+    <div class="dropdown-center">
+        @Html.LabelFor(m => m.Steps)
+    </div>
+    <div class="dropdown-center mb-3">
+        @Html.DropDownListFor(
+            m => m.Steps,
+            new SelectList(
+                new List<Object>
+                {
+                    new { value = 0, text = "0" },
+                    new { value = 5, text = "5" },
+                    new { value = 10, text = "10" },
+                    new { value = 20, text = "20" },
+                    new { value = 30, text = "30" },
+                    new { value = 50, text = "50" },
+                },
+                "value",
+                "text",
+                Model.Steps
+            ),
+            new
+            {
+                @class = "form-control"
+            }
+        )
+    </div>
+
+    <div class="buttons-center">
+        <input type="submit" Value="Solve Sudoku" class="btn btn-primary" />
+    </div>
+}
+
+@{
+    var solution = Model.Solution;
+
+    if (solution != null && solution.Count > 0)
+    {
+        var mainSolution = solution[solution.Count - 1];
+
+        if (Model.Steps > 0)
+        {
+            solution.RemoveAt(solution.Count - 1);
+
+            if (solution != null && solution.Count > 0)
+            {
+                <h3 class="text-center mt-5">Solution Steps</h3>
+
+                <div class="card bg-light">
+                    <div class="card-body">
+                        @foreach (var stepSolution in solution)
+                        {
+                            <div class="step-solution">
+                                @for (int j = 0; j < 9; j++)
+                                {
+                                    bool hasBorder = j % 3 == 2 && j < 8;
+                                    string cssClass = hasBorder ? "solution-row sudoku-row-border-bottom" : "solution-row";
+
+                                    if (j == 8)
+                                        cssClass += " solution-row-bottom";
+
+                                    <div class="@cssClass">
+                                        @for (int i = 0; i < 9; i++)
+                                        {
+                                            var numberSet = stepSolution[i][j];
+
+                                            if (numberSet != null && numberSet.Count > 1)
+                                            {
+                                                hasBorder = i % 3 == 2 && i < 8;
+                                                cssClass = hasBorder ? "not-solved not-solved-border-right" : "not-solved";
+
+                                                <div class="@cssClass">
+                                                    @for (int row = 0; row < 3; row++)
+                                                    {
+                                                        <div class="not-solved-row">
+                                                            @for (int col = 1; col <= 3; col++)
+                                                            {
+                                                                int num = 3 * row + col;
+
+                                                                <div class="not-solved-number">
+                                                                    @if (numberSet.Contains(num))
+                                                                    {
+                                                                        @num;
+                                                                    }
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                hasBorder = i % 3 == 2 && i < 8;
+                                                cssClass = hasBorder ? "solved solved-border-right" : "solved";
+
+                                                <div class="@cssClass">
+                                                    @foreach (int num in numberSet)
+                                                    {
+                                                        @num;
+                                                    }
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        }
+
+        if (mainSolution != null && mainSolution.Count > 0)
+        {
+            <h3 class="text-center mt-5">Final Solution</h3>
+
+            <div class="solution">
+                @for (int j = 0; j < 9; j++)
+                {
+                    bool hasBorder = j % 3 == 2 && j < 8;
+                    string cssClass = hasBorder ? "solution-row sudoku-row-border-bottom" : "solution-row";
+
+                    if (j == 8)
+                        cssClass += " solution-row-bottom";
+
+                    <div class="@cssClass">
+                        @for (int i = 0; i < 9; i++)
+                        {
+                            var numberSet = mainSolution[i][j];
+
+                            if (numberSet != null && numberSet.Count > 1)
+                            {
+                                hasBorder = i % 3 == 2 && i < 8;
+                                cssClass = hasBorder ? "not-solved not-solved-border-right" : "not-solved";
+
+                                <div class="@cssClass">
+                                    @for (int row = 0; row < 3; row++)
+                                    {
+                                        <div class="not-solved-row">
+                                            @for (int col = 1; col <= 3; col++)
+                                            {
+                                                int num = 3 * row + col;
+
+                                                <div class="not-solved-number">
+                                                    @if (numberSet.Contains(num))
+                                                    {
+                                                        @num;
+                                                    }
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                hasBorder = i % 3 == 2 && i < 8;
+                                cssClass = hasBorder ? "solved solved-border-right" : "solved";
+
+                                <div class="@cssClass">
+                                    @foreach (int num in numberSet)
+                                    {
+                                        @num;
+                                    }
+                                </div>
+                            }
+                        }
+                    </div>
+                }
+            </div>
+
+        }
+    }
+}
+
+
+
+@*<div class="card bg-light">
+        <div class="card-body">
+            @Model.Message;
+        </div>
+    </div>*@

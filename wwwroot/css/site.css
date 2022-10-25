@@ -1,0 +1,460 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+.navbar {
+    justify-content: center;
+}
+
+.top-title {
+    margin-top: 5px;
+}
+
+.sudoku, .solution {
+    width: 621px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    overflow: hidden;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-top: 3px solid black;
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+    border-bottom: 3px solid black;
+}
+
+.sudoku-row, .solution-row {
+    width: 621px;
+    height: 69px;
+    display: flex;
+}
+
+.sudoku-row.sudoku-row-bottom .sudoku-cell {
+    border-bottom: none;
+}
+
+.sudoku-row-border-bottom {
+    border-bottom: 3px solid black;
+}
+
+.sudoku-cell {
+    width: 69px;
+    height: 69px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #b3b3b3;
+    border-right: 1px solid #b3b3b3;
+}
+
+    .sudoku-cell.sudoku-cell-border-right {
+        border-right: 3px solid black;
+    }
+
+.sudoku-cell-text {
+    width: 36px;
+    height: 36px;
+    margin: 0 auto;
+    display: inline-block;
+    border: none;
+    font-size: 36px;
+    text-align: center;
+}
+
+.sudoku-cell-text:focus-visible {
+    border: none;
+    background-color: transparent;
+    resize: none;
+    outline: none;
+}
+
+.solved {
+    width: 69px;
+    height: 69px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #b3b3b3;
+    border-right: 1px solid #b3b3b3;
+    font-size: 36px;
+    text-align: center;
+}
+
+.not-solved {
+    width: 69px;
+    height: 69px;
+    border-bottom: 1px solid #b3b3b3;
+    border-right: 1px solid #b3b3b3;
+}
+
+.not-solved-row {
+    width: 69px;
+    height: 23px;
+    display: flex;
+}
+
+.not-solved-number {
+    width: 23px;
+    height: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.solution-row-border-bottom {
+    border-bottom: 3px solid black;
+}
+
+.solved.solved-border-right {
+    border-right: 3px solid black;
+}
+
+.not-solved.not-solved-border-right {
+    border-right: 3px solid black;
+}
+
+.sudoku, .solution {
+    width: 621px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    overflow: hidden;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-top: 3px solid black;
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+    border-bottom: 3px solid black;
+}
+
+.step-solution {
+    width: 459px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    overflow: hidden;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    border-top: 3px solid black;
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+    border-bottom: 3px solid black;
+}
+
+    .step-solution .solved {
+        width: 51px;
+        height: 51px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid #b3b3b3;
+        border-right: 1px solid #b3b3b3;
+        font-size: 36px;
+        text-align: center;
+    }
+
+    .step-solution .not-solved {
+        width: 51px;
+        height: 51px;
+        border-bottom: 1px solid #b3b3b3;
+        border-right: 1px solid #b3b3b3;
+    }
+
+    .step-solution .not-solved-row {
+        width: 51px;
+        height: 17px;
+        display: flex;
+    }
+
+    .step-solution .not-solved-number {
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 3px;
+    }
+
+    .step-solution .sudoku-row, .step-solution .solution-row {
+        width: 459px;
+        height: 51px;
+        display: flex;
+    }
+
+    .step-solution .solution-row-border-bottom {
+        border-bottom: 3px solid black;
+    }
+
+    .step-solution .solved.solved-border-right {
+        border-right: 3px solid black;
+    }
+
+    .step-solution .not-solved.not-solved-border-right {
+        border-right: 3px solid black;
+    }
+
+@media only screen and (max-width: 768px) {
+    .sudoku, .solution {
+        width: 297px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        overflow: hidden;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        border-top: 2px solid black;
+        border-left: 2px solid black;
+        border-right: 2px solid black;
+        border-bottom: 2px solid black;
+    }
+
+    .sudoku-row, .solution-row {
+        width: 297px;
+        height: 33px;
+        display: flex;
+    }
+
+        .sudoku-row.sudoku-row-bottom .sudoku-cell {
+            border-bottom: none;
+        }
+
+    .sudoku-row-border-bottom {
+        border-bottom: 2px solid black;
+    }
+
+    .sudoku-cell {
+        width: 33px;
+        height: 33px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid #b3b3b3;
+        border-right: 1px solid #b3b3b3;
+    }
+
+        .sudoku-cell.sudoku-cell-border-right {
+            border-right: 2px solid black;
+        }
+
+    .sudoku-cell-text {
+        width: 24px;
+        height: 24px;
+        margin: 0 auto;
+        display: inline-block;
+        border: none;
+        font-size: 24px;
+        text-align: center;
+    }
+
+        .sudoku-cell-text:focus-visible {
+            border: none;
+            background-color: transparent;
+            resize: none;
+            outline: none;
+        }
+
+    .solved {
+        width: 33px;
+        height: 33px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid #b3b3b3;
+        border-right: 1px solid #b3b3b3;
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .not-solved {
+        width: 33px;
+        height: 33px;
+        border-bottom: 1px solid #b3b3b3;
+        border-right: 1px solid #b3b3b3;
+    }
+
+    .not-solved-row {
+        width: 33px;
+        height: 11px;
+        display: flex;
+    }
+
+    .not-solved-number {
+        width: 11px;
+        height: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .solution-row-border-bottom {
+        border-bottom: 2px solid black;
+    }
+
+    .solved.solved-border-right {
+        border-right: 2px solid black;
+    }
+
+    .not-solved.not-solved-border-right {
+        border-right: 2px solid black;
+    }
+
+    .sudoku, .solution {
+        width: 297px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        overflow: hidden;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        border-top: 3px solid black;
+        border-left: 3px solid black;
+        border-right: 3px solid black;
+        border-bottom: 3px solid black;
+    }
+
+    .step-solution {
+        width: 243px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        overflow: hidden;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-top: 2px solid black;
+        border-left: 2px solid black;
+        border-right: 2px solid black;
+        border-bottom: 2px solid black;
+    }
+
+        .step-solution .solved {
+            width: 27px;
+            height: 27px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #b3b3b3;
+            border-right: 1px solid #b3b3b3;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .step-solution .not-solved {
+            width: 27px;
+            height: 27px;
+            border-bottom: 1px solid #b3b3b3;
+            border-right: 1px solid #b3b3b3;
+        }
+
+        .step-solution .not-solved-row {
+            width: 27px;
+            height: 9px;
+            display: flex;
+        }
+
+        .step-solution .not-solved-number {
+            width: 9px;
+            height: 9px;
+            font-size: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 3px;
+        }
+
+        .step-solution .sudoku-row, .step-solution .solution-row {
+            width: 243px;
+            height: 27px;
+            display: flex;
+        }
+
+        .step-solution .solution-row-border-bottom {
+            border-bottom: 2px solid black;
+        }
+
+        .step-solution .solved.solved-border-right {
+            border-right: 2px solid black;
+        }
+
+        .step-solution .not-solved.not-solved-border-right {
+            border-right: 2px solid black;
+        }
+}
+
+.buttons-center, .dropdown-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons-center .btn {
+    margin-right: 1rem;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+    color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
